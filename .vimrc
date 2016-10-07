@@ -55,7 +55,7 @@ set encoding=utf-8
 set guioptions-=T guioptions-=e guioptions-=L guioptions-=r
 " set shell=zsh
 
-set relativenumber 
+set relativenumber
 set number
 
 augroup vimrc
@@ -63,7 +63,7 @@ augroup vimrc
   autocmd GuiEnter * set columns=120 lines=70 number
   let g:indent_guides_auto_colors = 0
   autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=236
-  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=235 
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=235
 augroup END
 
 let g:indent_guides_enable_on_vim_startup=1
@@ -94,60 +94,10 @@ let g:tmuxline_preset={
       \'b'    : '#W',
       \'win'  : '#I:#W',
       \'cwin' : '★ #W',
-      \'x'    : '#(osascript ~/dotfiles/applescripts/spotify.scpt)',
+      \'x'    : '#(osascript ~/.dotfiles/applescripts/spotify.scpt)',
       \'y'    : '%a %R',
       \'z'    : '#h'}
-set tabstop=2 shiftwidth=2 expandtab
-set backspace=2
-set number numberwidth=4 
-set cursorline
-set scrolloff=8
-set hlsearch
-set clipboard+=unnamed
 
-syntax on
-
-" ctrlP Settings
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,.DS_Store
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-
-" NerdTree Stuff
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-set background=dark
-colorscheme base16-railscasts
-
-highlight clear SignColumn
-highlight VertSplit    ctermbg=236
-highlight ColorColumn  ctermbg=237
-highlight LineNr       ctermbg=236 ctermfg=240
-highlight CursorLineNr ctermbg=236 ctermfg=240
-highlight CursorLine   ctermbg=236
-highlight StatusLineNC ctermbg=238 ctermfg=0
-highlight StatusLine   ctermbg=240 ctermfg=12
-highlight IncSearch    ctermbg=3   ctermfg=1
-highlight Search       ctermbg=1   ctermfg=3
-highlight Visual       ctermbg=3   ctermfg=0
-highlight Pmenu        ctermbg=240 ctermfg=12
-highlight PmenuSel     ctermbg=3   ctermfg=1
-highlight SpellBad     ctermbg=0   ctermfg=1 
-
-" Keybindings
-map <C-n> :NERDTreeToggle<CR>
-
-"Fast quit and save from normal and insert mode
-" :map <C-X> <ESC>:x<CR>
-" :imap <C-X> <ESC>:x<CR>
-
-" Window movements
-map <C-k> <C-w><Up>
-map <C-j> <C-w><Down>
-map <C-l> <C-w><Right>
-map <C-h> <C-w><Left>
-
-" Tabs
-nnoremap <F1>  :tabnext<CR>
-" Fuck swap files
-set backupdir=~/.vim/backup_files//
-set directory=~/.vim/swap_files//
-set undodir=~/.vim/undo_files//
+if filereadable(expand('~/.vimrc.local'))
+  source ~/.vimrc.local
+endif
